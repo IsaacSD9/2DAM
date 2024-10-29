@@ -26,12 +26,20 @@ public class MainApp extends Application {
     El resto de controladores obtendrá luego acceso a esa lista central dentro de MainApp. */
 
     private static ObservableList<Person> personData = FXCollections.observableArrayList();
-
+    AgendaModel agendaModel;
     /**
      * Constructor
      */
     public MainApp() {
+        PersonRepositoryImpl agendaRepository = new PersonRepositoryImpl();
+        agendaModel = new AgendaModel();
 
+        try {
+            agendaModel.setPersonaRepository(agendaRepository);
+            personData.addAll(agendaModel.setPersonas());
+        } catch (ExcepcionPerson e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -94,8 +102,12 @@ public class MainApp extends Application {
             // Give the controller access to the main app.
             Person_Overview_Controller controller = loader.getController();
             controller.setMainApp(this);
+            controller.setAgendaModelo(agendaModel);
+
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (ExcepcionPerson e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -166,14 +178,7 @@ public class MainApp extends Application {
 
 
     public static void main(String[] args) {
-        PersonRepositoryImpl agendaRepository = new PersonRepositoryImpl();
-        AgendaModel agendaModel = new AgendaModel();
-        try {
-            agendaModel.setPersonaRepository(agendaRepository);
-            personData.addAll(agendaModel.setPersonas());
-        } catch (ExcepcionPerson e) {
-            throw new RuntimeException(e);
-        }
+
 
         launch(args);
 

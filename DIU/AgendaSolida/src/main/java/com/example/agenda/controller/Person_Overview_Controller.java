@@ -1,5 +1,11 @@
 package com.example.agenda.controller;
 import com.example.agenda.MainApp;
+import com.example.agenda.model.AgendaModel;
+import com.example.agenda.model.ExcepcionPerson;
+import com.example.agenda.model.repository.PersonRepository;
+import com.example.agenda.model.repository.impl.PersonRepositoryImpl;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -32,11 +38,16 @@ public class Person_Overview_Controller {
 
     // Reference to the main application.
     private MainApp mainApp;
-
+    private AgendaModel modeloAgenda;
     /**
      * The constructor.
      * The constructor is called before the initialize() method.
      */
+
+    public void setAgendaModelo(AgendaModel modeloAgenda)  throws ExcepcionPerson{
+        this.modeloAgenda = modeloAgenda;
+    }
+
     public Person_Overview_Controller() {
     }
 
@@ -108,11 +119,18 @@ public class Person_Overview_Controller {
      * Called when the user clicks the edit button. Opens a dialog to edit
      * details for the selected person.
      */
+
     @FXML
     private void handleEditPerson() {
         Person selectedPerson = personTable.getSelectionModel().getSelectedItem();
         if (selectedPerson != null) {
             boolean okClicked = mainApp.showPersonEditDialog(selectedPerson);
+
+            try {
+                modeloAgenda.editarPersona(selectedPerson);
+            } catch (ExcepcionPerson e) {
+                throw new RuntimeException(e);
+            }
             if (okClicked) {
                 showPersonDetails(selectedPerson);
             }

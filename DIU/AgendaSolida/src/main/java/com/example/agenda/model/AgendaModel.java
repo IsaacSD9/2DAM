@@ -22,10 +22,7 @@ public class AgendaModel {
         return PersonUtil.parseToPerson(personas);
     }
 
-    //Tengo que cambiar el metodo parseToPersonVO
     public void editarPersona(Person p) throws ExcepcionPerson{
-        p.getCodigo();
-        PersonUtil.parseToPersonVO(p);
-        personas= personaRepository.editPersona();
+        personaRepository.editPersona(PersonUtil.parseToPersonVO(p));
     }
 }
