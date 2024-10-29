@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -16,7 +17,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
-
+    String value1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adaptador, View view, int position, long id) {
-                String value = adaptador.getItemAtPosition(position).toString();
-                Toast.makeText(getApplicationContext(), value, Toast.LENGTH_SHORT).show();
+                value1 = adaptador.getItemAtPosition(position).toString();
+
             }
 
             @Override
@@ -43,11 +44,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Button button1 = findViewById(R.id.miBoton);
-
+        TextView texto = findViewById(R.id.miTexto);
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                texto.setText(value1);
             }
         });
     }
