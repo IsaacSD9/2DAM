@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+
+<Pane fx:id="fondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="526.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ejemplodiu.controller.ContadorController">
+   <children>
+      <Button fx:id="mas" layoutX="157.0" layoutY="115.0" mnemonicParsing="false" onAction="#botonMas" prefHeight="29.0" prefWidth="36.0" text="+" />
+      <Button fx:id="menos" layoutX="247.0" layoutY="115.0" mnemonicParsing="false" onAction="#botonMenos" prefHeight="29.0" prefWidth="36.0" text="-" />
+      <Button fx:id="cero" layoutX="338.0" layoutY="115.0" mnemonicParsing="false" onAction="#botonCero" prefHeight="29.0" prefWidth="36.0" text="0" />
+      <Label fx:id="contador" layoutX="261.0" layoutY="191.0" text="0" />
+      <TextField fx:id="texto1" layoutX="184.0" layoutY="222.0"  promptText="Ingrese un número" />
+      <ProgressBar fx:id="barra" layoutX="165.0" layoutY="274.0" prefWidth="200.0" progress="0.0" />
+   </children>
+</Pane>

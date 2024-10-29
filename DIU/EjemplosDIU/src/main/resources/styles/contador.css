@@ -1,0 +1,14 @@
+.textoazul {
+    -fx-text-fill: blue;
+}
+
+#fondorojo {
+	-fx-background-color: red;
+}
+
+#fondonegro {
+	-fx-background-color: black;
+	-fx-text-fill: white;
+
+}
+

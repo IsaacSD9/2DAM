@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:columnCount="4"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="4"
+        android:textSize="50dp"
+        android:text="Visor"
+        android:fontFamily="@font/colour"
+        style="@style/MiVisorStyle">
+    </TextView>
+    <Button android:text="7"
+        android:id="@+id/siete"
+        android:layout_margin="4dp"
+        app:backgroundTint="#FFF442"
+        style="@style/MyMaterialButtonStyle"
+        />
+    <Button android:text="8"
+        android:id="@+id/ocho"
+
+        android:layout_margin="4dp"
+        app:backgroundTint="#FFF442"
+        style="@style/MyMaterialButtonStyle"/>
+    <Button android:text="9"
+        android:id="@+id/nueve"
+
+        android:layout_margin="4dp"
+        app:backgroundTint="#FFF442"
+        style="@style/MyMaterialButtonStyle"/>
+    <Button android:text="/"
+        android:id="@+id/barra"
+
+        android:layout_margin="4dp"
+        app:backgroundTint="#FFF442"
+        style="@style/MyMaterialButtonStyle"/>
+    <Button android:text="4"
+        android:id="@+id/cuatro"
+
+        android:layout_margin="4dp"
+        app:backgroundTint="#FFF442"
+        style="@style/MyMaterialButtonStyle"/>
+    <Button android:text="5"
+        android:id="@+id/cinco"
+
+        android:layout_margin="4dp"
+        app:backgroundTint="#FFF442"
+        style="@style/MyMaterialButtonStyle"/>
+    <Button android:text="6"
+        android:id="@+id/seis"
+
+        android:layout_margin="4dp"
+        app:backgroundTint="#FFF442"
+        style="@style/MyMaterialButtonStyle"/>
+    <Button android:text="*"
+        android:id="@+id/multi"
+
+        android:layout_margin="4dp"
+        app:backgroundTint="#FFF442"
+        style="@style/MyMaterialButtonStyle"/>
+    <Button android:text="1"
+        android:id="@+id/uno"
+
+        android:layout_margin="4dp"
+        android:backgroundTint="#FFA12E"
+        />
+    <Button android:text="2"
+        android:id="@+id/dos"
+
+        android:layout_margin="4dp"
+        android:backgroundTint="#FFA12E"/>
+    <Button android:text="3"
+        android:id="@+id/tres"
+
+        android:layout_margin="4dp"
+        android:backgroundTint="#FFA12E"/>
+    <Button
+        android:text="-"
+        android:id="@+id/menos"
+
+        android:layout_margin="4dp"
+        android:backgroundTint="#FFA12E"/>
+    <Button
+        android:text="0"
+        android:id="@+id/cero"
+
+        android:layout_margin="4dp"
+        android:backgroundTint="#FFA12E"/>
+    <Button
+        android:text="."
+        android:id="@+id/punto"
+
+        android:layout_margin="4dp"
+        android:backgroundTint="#FFA12E"/>
+    <Button
+        android:text="^"
+        android:id="@+id/elevado"
+
+        android:layout_margin="4dp"
+        android:backgroundTint="#FFA12E"/>
+    <Button
+        android:text="+"
+        android:id="@+id/suma"
+
+        android:layout_margin="4dp"
+        android:backgroundTint="#FFA12E"/>
+
+    <Button
+        android:id="@+id/igual"
+
+        android:layout_margin="4dp"
+        android:layout_columnSpan="4"
+        android:layout_gravity="fill"
+        android:text="="
+        android:backgroundTint="#FF4D4D"/>
+</GridLayout>

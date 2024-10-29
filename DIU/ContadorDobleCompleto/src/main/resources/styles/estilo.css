@@ -1,0 +1,14 @@
+.contador {
+    -fx-text-fill: blue;
+}
+
+#fondo {
+	-fx-background-color: red;
+}
+
+#cero {
+	-fx-background-color: black;
+	-fx-text-fill: white;
+
+}
+

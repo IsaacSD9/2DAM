@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:gravity="center">
+
+
+    <Button
+        android:id="@+id/miBoton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Botón" />
+
+    <Spinner
+        android:id="@+id/miSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/miBoton"
+        android:layout_marginBottom="-44dp"
+        />
+
+    <TextView android:id="@+id/miTexto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="#000FD7"
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"/>
+
+</RelativeLayout>

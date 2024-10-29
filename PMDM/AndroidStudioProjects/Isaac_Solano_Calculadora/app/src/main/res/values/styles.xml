@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Estilo para los botones con borde cuadrado -->
+    <style name="MyMaterialButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:background">#FFEB3B</item> <!-- Cambia el color según tus necesidades -->
+        <item name="android:buttonCornerRadius" tools:targetApi="p">0dp</item> <!-- Bordes cuadrados -->
+        <item name="android:drawableLeft">@drawable/ic_launcher_foreground</item> <!-- Imagen a la izquierda del texto -->
+        <item name="android:textSize">16sp</item> <!-- Tamaño de letra -->
+        <item name="android:textColor">#FF0000</item> <!-- Color de letra -->
+        <item name="android:maxWidth">42dp</item> <!-- Altura máxima del botón -->
+        <item name="android:maxHeight">64dp</item> <!-- Anchura máxima del botón -->
+    </style>
+
+    <!-- Estilo para los botones con borde redondeado -->
+    <style name="MyMaterialButtonStyleBis" parent="Widget.MaterialComponents.Button">
+        <item name="android:background">#FF5722</item> <!-- Cambia el color según tus necesidades -->
+        <item name="android:textSize">16sp</item> <!-- Tamaño de letra -->
+        <item name="android:textColor">@android:color/white</item> <!-- Color de letra -->
+    </style>
+
+    <!-- Estilo para el visor -->
+    <style name="MiVisorStyle">
+        <item name="android:fontFamily">sans-serif</item> <!-- Cambia a 'colour.ttf' en tu TextView -->
+        <item name="android:textColor">#2196F3</item> <!-- Color azul -->
+    </style>
+
+</resources>

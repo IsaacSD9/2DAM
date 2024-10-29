@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.agendav2.controller.ConversorController">
+   <children>
+      <Label layoutX="218.0" layoutY="23.0" text="CONVERSOR DE MONEDAS" />
+      <Label layoutX="133.0" layoutY="93.0" text="EUROS" />
+      <Label layoutX="401.0" layoutY="93.0" text="DOLARES" />
+      <TextField fx:id="cajaEuros" layoutX="74.0" layoutY="139.0" onKeyPressed="#cambioCaja" />
+      <TextField fx:id="cajaDolares" layoutX="349.0" layoutY="139.0" />
+   </children>
+</AnchorPane>
