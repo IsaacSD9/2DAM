@@ -1,0 +1,60 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <!-- Primer EditText -->
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Introduce número 1"
+        android:inputType="number"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Segundo EditText debajo del primero -->
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Introduce número 2"
+        android:inputType="number"
+        android:layout_below="@id/editText1"
+        android:layout_marginBottom="16dp" />
+
+
+
+    <!-- Primer CheckBox debajo del Spinner -->
+    <CheckBox
+        android:id="@+id/checkBox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Suma"
+        android:layout_below="@id/editText2"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Segundo CheckBox debajo del primer CheckBox -->
+    <CheckBox
+        android:id="@+id/checkBox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resta"
+        android:layout_below="@id/checkBox1"
+        android:layout_marginBottom="16dp" />
+
+
+    <!-- TextView para mostrar texto, debajo del Checkbox2 -->
+    <TextView
+        android:id="@+id/miTexto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="#000FD7"
+        android:textSize="30sp"
+        android:layout_below="@id/checkBox2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
+
+</RelativeLayout>
