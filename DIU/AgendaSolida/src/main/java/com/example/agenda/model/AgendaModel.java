@@ -12,6 +12,9 @@ public class AgendaModel {
     private PersonRepository personaRepository; //Esta es la dependencia de ConversorModelo con MonedaRepository
     ArrayList<PersonVO> personas = new ArrayList<>();
 
+
+
+
     public void setPersonaRepository(PersonRepository personaRepository)  throws ExcepcionPerson{
         this.personaRepository = personaRepository;
     }
@@ -24,5 +27,17 @@ public class AgendaModel {
 
     public void editarPersona(Person p) throws ExcepcionPerson{
         personaRepository.editPersona(PersonUtil.parseToPersonVO(p));
+    }
+
+    public void insertarPersona(Person p) throws ExcepcionPerson{
+        personaRepository.addPersona(PersonUtil.parseToPersonVO(p));
+    }
+
+    public void eliminarPersona(int i) throws ExcepcionPerson{
+        personaRepository.deletePersona(i);
+    }
+
+    public int obtenerId() throws ExcepcionPerson {
+        return  personaRepository.lastId();
     }
 }

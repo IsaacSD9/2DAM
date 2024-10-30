@@ -134,6 +134,12 @@ public class Person {
         return codigo.get();
     }
 
+    public void setCodigo(int codigo) {
+
+        this.codigo.set(codigo);
+    }
+
+
     public IntegerProperty codigoProperty() {
         return codigo;
     }

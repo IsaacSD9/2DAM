@@ -42,5 +42,6 @@
             <Button layoutX="396.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleCancel" prefWidth="100.0" text="Cancelar" />
          </children>
       </HBox>
+      <ProgressBar layoutX="87.0" layoutY="321.0" prefWidth="200.0" progress="0.0" />
    </children>
 </AnchorPane>

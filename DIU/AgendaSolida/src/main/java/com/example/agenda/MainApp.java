@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -38,7 +39,11 @@ public class MainApp extends Application {
             agendaModel.setPersonaRepository(agendaRepository);
             personData.addAll(agendaModel.setPersonas());
         } catch (ExcepcionPerson e) {
-            throw new RuntimeException(e);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("No se ha conectar a la base de datos para la agenda");
+            alert.setContentText("Por favor, inicie el servidor con la base de datos");
+            alert.showAndWait();
         }
     }
 
@@ -151,7 +156,7 @@ public class MainApp extends Application {
             AnchorPane page = (AnchorPane) loader.load();
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Birthday Statistics");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initModality(Modality.NONE); // Ventana NO MODAL
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);

@@ -94,7 +94,14 @@ public class Person_Overview_Controller {
     @FXML
     private void handleDeletePerson() {
         int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
+        Person selectedPerson = personTable.getSelectionModel().getSelectedItem();
+
         if (selectedIndex >= 0) {
+            try {
+                modeloAgenda.eliminarPersona(selectedPerson.getCodigo());
+            } catch (ExcepcionPerson e) {
+                throw new RuntimeException(e);
+            }
             personTable.getItems().remove(selectedIndex);
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -110,9 +117,21 @@ public class Person_Overview_Controller {
     private void handleNewPerson() {
         Person tempPerson = new Person();
         boolean okClicked = mainApp.showPersonEditDialog(tempPerson);
-        if (okClicked) {
-            mainApp.getPersonData().add(tempPerson);
-        }
+        try {
+            if (modeloAgenda.setPersonas() != null){
+                modeloAgenda.insertarPersona(tempPerson);
+                tempPerson.setCodigo(modeloAgenda.obtenerId());
+                if (okClicked) {
+                    mainApp.getPersonData().add(tempPerson);
+                }
+            }
+        } catch (ExcepcionPerson e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("No se ha podido insertar un nuevo contacto");
+            alert.setContentText("Por favor, inicie el servidor con la base de datos para realizar la inserción");
+            alert.showAndWait();        }
+
     }
 
     /**
