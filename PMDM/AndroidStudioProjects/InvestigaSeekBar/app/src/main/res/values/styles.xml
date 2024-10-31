@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Barra">
+        <item name="android:progressTint">#008DFF</item>
+        <item name="android:progressBackgroundTint">#FF0000</item>
+        <item name="thumbTint">#00FF0C</item>
+    </style>
+</resources>
