@@ -9,11 +9,15 @@ import com.example.agenda.model.ExcepcionPerson;
 import com.example.agenda.model.repository.impl.PersonRepositoryImpl;
 import com.example.agenda.view.Person;
 import javafx.application.Application;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -28,12 +32,22 @@ public class MainApp extends Application {
 
     private static ObservableList<Person> personData = FXCollections.observableArrayList();
     AgendaModel agendaModel;
+
+    private final SimpleDoubleProperty progressProperty = new SimpleDoubleProperty(0);
+
     /**
      * Constructor
      */
     public MainApp() {
         PersonRepositoryImpl agendaRepository = new PersonRepositoryImpl();
         agendaModel = new AgendaModel();
+        updateProgress();
+
+        personData.addListener((ListChangeListener<Person>) change -> {
+            while (change.next()) {
+                updateProgress();
+            }
+        });
 
         try {
             agendaModel.setPersonaRepository(agendaRepository);
@@ -126,7 +140,7 @@ public class MainApp extends Application {
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Edit Person");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initModality(Modality.NONE);
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
@@ -135,6 +149,11 @@ public class MainApp extends Application {
             PersonEditDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setPerson(person);
+
+            ProgressBar progressBar = (ProgressBar) page.lookup("#barraProgreso");
+            if (progressBar != null) {
+                Bindings.bindBidirectional(progressBar.progressProperty(), progressProperty);
+            }
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
@@ -171,7 +190,11 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
-
+    private void updateProgress() {
+        // Actualizar el valor de progreso basado en el tamaño de personData
+        double progress = (double) personData.size() / 50; // 50 es el máximo
+        progressProperty.set(progress);
+    }
 
 
 

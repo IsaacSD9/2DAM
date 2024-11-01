@@ -1,5 +1,9 @@
 package com.example.agenda.controller;
+import com.example.agenda.model.AgendaModel;
+import com.example.agenda.model.ExcepcionPerson;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -28,11 +32,13 @@ public class PersonEditDialogController {
     @FXML
     private TextField birthdayField;
 
+    @FXML
+    private ProgressBar barraProgreso;
+
 
     private Stage dialogStage;
     private Person person;
     private boolean okClicked = false;
-
     /**
      * Initializes the controller class. This method is automatically called
      * after the fxml file has been loaded.
@@ -99,6 +105,7 @@ public class PersonEditDialogController {
      */
     @FXML
     private void handleCancel() {
+
         dialogStage.close();
     }
 

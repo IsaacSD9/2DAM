@@ -122,7 +122,16 @@ public class Person_Overview_Controller {
                 modeloAgenda.insertarPersona(tempPerson);
                 tempPerson.setCodigo(modeloAgenda.obtenerId());
                 if (okClicked) {
-                    mainApp.getPersonData().add(tempPerson);
+                    if (mainApp.getPersonData().size()<50){
+                        mainApp.getPersonData().add(tempPerson);
+
+                    }else {
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("AGENDA LLENA");
+                        alert.setHeaderText("No se ha podido insertar un nuevo contacto");
+                        alert.setContentText("Has llegado al límite de contactos");
+                        alert.showAndWait();
+                    }
                 }
             }
         } catch (ExcepcionPerson e) {

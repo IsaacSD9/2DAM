@@ -7,94 +7,96 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Contador_Applet extends Applet implements ActionListener {
-    private HiloContador hilo1, hilo2;
-    private Button btnHilo1, btnHilo2;
+    // Definimos los hilos y botones del applet
+    private HiloContador hiloContador1, hiloContador2;
+    private Button botonFinalizarHilo1, botonFinalizarHilo2;
 
     public void init() {
-        // Inicializamos los botones
-        btnHilo1 = new Button("Finalizar Hilo 1");
-        btnHilo2 = new Button("Finalizar Hilo 2");
+        // Inicializamos los botones para finalizar cada hilo y los añadimos al applet
+        botonFinalizarHilo1 = new Button("Finalizar Hilo 1");
+        add(botonFinalizarHilo1);
+        botonFinalizarHilo2 = new Button("Finalizar Hilo 2");
+        add(botonFinalizarHilo2);
 
-        // Añadimos los botones al applet
-        add(btnHilo1);
-        add(btnHilo2);
-
-        // Registramos los botones para escuchar eventos
-        btnHilo1.addActionListener(this);
-        btnHilo2.addActionListener(this);
+        // Registramos los botones para escuchar eventos de acción
+        botonFinalizarHilo1.addActionListener(this);
+        botonFinalizarHilo2.addActionListener(this);
     }
 
     public void start() {
-        // Creamos y lanzamos los hilos, inicializando los contadores en valores diferentes
-        hilo1 = new HiloContador(100);
-        hilo2 = new HiloContador(120);
-        hilo1.start();
-        hilo2.start();
+        // Creamos e iniciamos los hilos, con contadores en diferentes valores iniciales
+        hiloContador1 = new HiloContador(100);
+        hiloContador1.start();
+        hiloContador2 = new HiloContador(120);
+        hiloContador2.start();
+
     }
 
     public void paint(Graphics g) {
-        // Verificamos que el hilo no sea null antes de intentar acceder a su contador
-        if (hilo1 != null && hilo1.estaEnEjecucion()) {
-            g.drawString("Hilo1: " + hilo1.getContador(), 50, 100);
+        // Dibujamos el estado de cada hilo en la pantalla
+        if (hiloContador1 != null && hiloContador1.estaEnEjecucion()) {
+            g.drawString("Hilo1: " + hiloContador1.obtenerContador(), 50, 100);
         } else {
             g.drawString("Hilo1: Finalizado", 50, 100);
         }
-
-        if (hilo2 != null && hilo2.estaEnEjecucion()) {
-            g.drawString("Hilo2: " + hilo2.getContador(), 50, 120);
+        if (hiloContador2 != null && hiloContador2.estaEnEjecucion()) {
+            g.drawString("Hilo2: " + hiloContador2.obtenerContador(), 50, 120);
         } else {
             g.drawString("Hilo2: Finalizado", 50, 120);
         }
     }
 
-    public void actionPerformed(ActionEvent e) {
-        // Acción cuando se pulsa el botón de "Finalizar Hilo 1"
-        if (e.getSource() == btnHilo1 && hilo1 != null && hilo1.estaEnEjecucion()) {
-            hilo1.detener(); // Cambiamos la variable de control en lugar de usar stop()
-            btnHilo1.setLabel("Finalizado Hilo 1");
+    public void actionPerformed(ActionEvent evento) {
+        // Verificamos si se ha pulsado el botón para finalizar Hilo 1
+        if (evento.getSource() == botonFinalizarHilo1 && hiloContador1 != null && hiloContador1.estaEnEjecucion()) {
+            hiloContador1.detenerHilo(); // Finalizamos el hilo modificando la variable de control
+            botonFinalizarHilo1.setLabel("Finalizado Hilo1");
         }
 
-        // Acción cuando se pulsa el botón de "Finalizar Hilo 2"
-        if (e.getSource() == btnHilo2 && hilo2 != null && hilo2.estaEnEjecucion()) {
-            hilo2.detener(); // Cambiamos la variable de control en lugar de usar stop()
-            btnHilo2.setLabel("Finalizado Hilo 2");
+        // Verificamos si se ha pulsado el botón para finalizar Hilo 2
+        if (evento.getSource() == botonFinalizarHilo2 && hiloContador2 != null && hiloContador2.estaEnEjecucion()) {
+            hiloContador2.detenerHilo(); // Finalizamos el hilo modificando la variable de control
+            botonFinalizarHilo2.setLabel("Finalizado Hilo2");
         }
 
-        // Redibujamos la pantalla para reflejar los cambios
+        // Redibujamos la pantalla para actualizar el estado de los hilos
         repaint();
     }
 
-    // Clase interna que representa un contador en un hilo
+    // Clase interna que representa un contador en un hilo separado
     class HiloContador extends Thread {
         private int contador;
-        private volatile boolean enEjecucion = true; // Variable de control de ejecución
+        private volatile boolean enEjecucion = true; // Variable de control para mantener el hilo activo
 
-        public HiloContador(int inicio) {
-            this.contador = inicio;
+        public HiloContador(int valorInicial) {
+            this.contador = valorInicial;
+        }
+
+
+        public int obtenerContador() {
+            return contador;
+        }
+
+        public void detenerHilo() {
+            enEjecucion = false; // Cambiamos la variable de control para finalizar el hilo
+            interrupt(); // Interrumpimos el hilo para que salga de cualquier espera
         }
 
         public void run() {
-            while (enEjecucion) { // Usamos la variable de control en lugar de true
+            // Incrementamos el contador mientras el hilo esté en ejecución
+            while (enEjecucion) {
                 contador++;
                 try {
                     // Hacemos una pausa de 1 segundo entre cada incremento
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt(); // Restauramos el estado de interrupción
-                    break; // Salimos del bucle si se interrumpe el hilo
+                    Thread.currentThread().interrupt(); // Restauramos el estado de interrupción del hilo
+                    break; // Salimos del bucle si el hilo ha sido interrumpido
                 }
-                repaint(); // Redibujamos el applet en cada incremento
+                repaint(); // Redibujamos el applet para actualizar el contador visualmente
             }
         }
 
-        public int getContador() {
-            return contador;
-        }
-
-        public void detener() {
-            enEjecucion = false; // Cambiamos la variable de control para detener el hilo
-            interrupt(); // Interrumpimos el hilo para salir de sleep()
-        }
 
         public boolean estaEnEjecucion() {
             return enEjecucion;

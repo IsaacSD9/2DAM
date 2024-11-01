@@ -30,7 +30,10 @@ public class AgendaModel {
     }
 
     public void insertarPersona(Person p) throws ExcepcionPerson{
-        personaRepository.addPersona(PersonUtil.parseToPersonVO(p));
+       if (personaRepository.ObtenerListaPersonas().size()<50){
+           personaRepository.addPersona(PersonUtil.parseToPersonVO(p));
+
+       }
     }
 
     public void eliminarPersona(int i) throws ExcepcionPerson{

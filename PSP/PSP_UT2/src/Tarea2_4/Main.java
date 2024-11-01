@@ -1,31 +1,34 @@
 package Tarea2_4;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        MiHilo hilo = new MiHilo(); // Crea una instancia de MyHilo
-        hilo.start(); // Inicia el hilo
+        MiHilo hiloControlador = new MiHilo();
+        hiloControlador.start();
+        String comando;
+        Scanner entradaUsuario = new Scanner(System.in);
 
-        java.util.Scanner scanner = new java.util.Scanner(System.in);
-        String entrada;
 
-        do {
-            System.out.println("Introduce una cadena (* para finalizar, S para suspender, R para reanudar):");
-            entrada = scanner.nextLine(); // Lee la cadena introducida por el usuario
+        // Realizamos un bucle para gestionar el estado del hilo
+        while (true) {
+            System.out.println("Introduce un comando (* para finalizar, P para pausar, C para continuar):");
+            comando = entradaUsuario.nextLine();
 
-            if (entrada.equals("S")) {
-                hilo.Suspende(); // Suspende el hilo
-                System.out.println("Hilo suspendido.");
-            } else if (entrada.equals("R")) {
-                hilo.Reanuda(); // Reanuda el hilo
+            if (comando.equals("*")) { // Si el usuario quiere finalizar y ha introducido *
+                hiloControlador.detenerHilo();
+                break;
+            } else if (comando.equals("P")) { // Si el usuario quiere pausar el hilo y ha introducido P
+                hiloControlador.pausarHilo();
+                System.out.println("Hilo en pausa.");
+            } else if (comando.equals("C")) { // Si el usuario quiere reanudar el hilo y ha introducido C
+                hiloControlador.continuarHilo();
                 System.out.println("Hilo reanudado.");
             }
-
-        } while (!entrada.equals("*")); // El bucle se repite hasta que se introduce *
-
-        if (entrada.equals("*")) { // Si se ha seleccionado terminar se finaliza la ejecución del hilo
-            hilo.stop();
         }
-        System.out.println("Valor final del contador: " + hilo.getContador());
-        System.out.println("Fin del programa.");
+
+        // Imprime el valor del contador al finalizar la ejecución
+        System.out.println("El valor del contador final es: " + hiloControlador.obtenerValorContador());
+        System.out.println("Programa finalizado");
     }
 }

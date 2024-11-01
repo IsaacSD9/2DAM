@@ -9,7 +9,7 @@ public class ConexionAgenda {
 
     public Connection conectarBD() throws SQLException {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/agendaSolid?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/agendasolid?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
             Class.forName("com.mysql.cj.jdbc.Driver");
             return conn;
         } catch (SQLException var2) {
