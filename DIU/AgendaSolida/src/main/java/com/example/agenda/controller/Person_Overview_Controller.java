@@ -118,10 +118,11 @@ public class Person_Overview_Controller {
         Person tempPerson = new Person();
         boolean okClicked = mainApp.showPersonEditDialog(tempPerson);
         try {
+            if (okClicked) {
             if (modeloAgenda.setPersonas() != null){
                 modeloAgenda.insertarPersona(tempPerson);
                 tempPerson.setCodigo(modeloAgenda.obtenerId());
-                if (okClicked) {
+
                     if (mainApp.getPersonData().size()<50){
                         mainApp.getPersonData().add(tempPerson);
 
